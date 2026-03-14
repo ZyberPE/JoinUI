@@ -1,0 +1,15 @@
+name: JoinUI
+main: JoinUI\Main
+version: 1.0.0
+api: 5.0.0
+author: ZyberPE
+
+commands:
+  howtooplay:
+    description: Opens the How To Play UI
+    usage: "/howtooplay"
+    permission: joinui.command
+
+permissions:
+  joinui.command:
+    default: true
