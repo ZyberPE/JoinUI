@@ -6,10 +6,10 @@ author: ZyberPE
 
 commands:
   howtooplay:
-    description: Opens the How To Play UI
+    description: Open the How To Play guide
     usage: "/howtooplay"
-    permission: joinui.command
+    permission: joinui.use
 
 permissions:
-  joinui.command:
+  joinui.use:
     default: true
