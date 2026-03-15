@@ -1,17 +1,22 @@
-# UI Title
-title: "&6How To Play"
+# Increase this number when you update the guide
+guide-version: 1
 
-# Main UI Text
-text: "&eWelcome to the server!\n\n&fThis server has many features.\n\n&a• Custom Enchants\n&a• Economy\n&a• PvP\n\n&bMore guides coming soon!"
+form:
+  title: "&6How To Play"
 
-# Button text
-close-button: "&cClose"
+  content: |
+    &eWelcome to the server!
 
-# Message sent after the player closes the form
-close-message: "&eTo learn how to play later use &a/howtooplay"
+    &f1. &aMine resources to earn money
+    &f2. &aUse /shop to buy items
+    &f3. &aFight players in PvP
+    &f4. &aUse /spawn if you get lost
 
-# Message sent when a player joins for the first time
-first-join-message: "&aWelcome! Please read the how to play guide."
+    &bMore tutorials coming soon!
 
-# Message sent when opening the form with the command
-command-open-message: "&eOpening How To Play..."
+  close-button: "&cClose"
+
+messages:
+  first-join: "&aWelcome! Please read the How To Play guide."
+  reopen: "&eYou can reopen this guide anytime using &a/howtooplay"
+  command-open: "&eOpening the How To Play guide..."
