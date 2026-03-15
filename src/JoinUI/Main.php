@@ -10,45 +10,63 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\utils\Config;
 
-class Main extends PluginBase implements Listener {
+class Main extends PluginBase implements Listener{
 
-    public function onEnable(): void {
+    private Config $data;
+
+    public function onEnable() : void{
         $this->saveDefaultConfig();
+
+        @mkdir($this->getDataFolder());
+        $this->data = new Config($this->getDataFolder() . "data.yml", Config::YAML, [
+            "players" => []
+        ]);
+
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
-    public function onJoin(PlayerJoinEvent $event): void {
+    public function onJoin(PlayerJoinEvent $event) : void{
         $player = $event->getPlayer();
+        $name = strtolower($player->getName());
 
-        if(!$player->hasPlayedBefore()){
-            $player->sendMessage($this->color($this->getConfig()->get("first-join-message")));
-            $this->sendForm($player);
+        $players = $this->data->get("players");
+        $version = $this->getConfig()->get("guide-version");
+
+        if(!isset($players[$name]) || $players[$name] < $version){
+
+            $player->sendMessage($this->color($this->getConfig()->getNested("messages.first-join")));
+            $this->openGuide($player);
+
+            $players[$name] = $version;
+            $this->data->set("players", $players);
+            $this->data->save();
         }
     }
 
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
 
         if($command->getName() === "howtooplay"){
 
             if(!$sender instanceof Player){
-                $sender->sendMessage("Run this command in-game.");
+                $sender->sendMessage("Use this command in-game.");
                 return true;
             }
 
-            $sender->sendMessage($this->color($this->getConfig()->get("command-open-message")));
-            $this->sendForm($sender);
+            $sender->sendMessage($this->color($this->getConfig()->getNested("messages.command-open")));
+            $this->openGuide($sender);
         }
 
         return true;
     }
 
-    public function sendForm(Player $player): void {
+    private function openGuide(Player $player) : void{
 
         $formAPI = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
 
         if($formAPI === null){
-            $player->sendMessage("FormAPI is required.");
+            $player->sendMessage("FormAPI plugin is required.");
             return;
         }
 
@@ -57,21 +75,17 @@ class Main extends PluginBase implements Listener {
                 return;
             }
 
-            $player->sendMessage($this->color($this->getConfig()->get("close-message")));
+            $player->sendMessage($this->color($this->getConfig()->getNested("messages.reopen")));
         });
 
-        $title = $this->color($this->getConfig()->get("title"));
-        $text = $this->color($this->getConfig()->get("text"));
-        $button = $this->color($this->getConfig()->get("close-button"));
-
-        $form->setTitle($title);
-        $form->setContent($text);
-        $form->addButton($button);
+        $form->setTitle($this->color($this->getConfig()->getNested("form.title")));
+        $form->setContent($this->color($this->getConfig()->getNested("form.content")));
+        $form->addButton($this->color($this->getConfig()->getNested("form.close-button")));
 
         $player->sendForm($form);
     }
 
-    public function color(string $text): string {
+    private function color(string $text) : string{
         return str_replace("&", "§", $text);
     }
 }
