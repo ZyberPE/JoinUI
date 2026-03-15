@@ -12,6 +12,8 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\Config;
 
+use jojoe77777\FormAPI\SimpleForm;
+
 class Main extends PluginBase implements Listener{
 
     private Config $data;
@@ -63,14 +65,7 @@ class Main extends PluginBase implements Listener{
 
     private function openGuide(Player $player) : void{
 
-        $formAPI = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-
-        if($formAPI === null){
-            $player->sendMessage("FormAPI plugin is required.");
-            return;
-        }
-
-        $form = $formAPI->createSimpleForm(function(Player $player, $data){
+        $form = new SimpleForm(function(Player $player, $data){
             if($data === null){
                 return;
             }
