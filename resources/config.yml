@@ -2,16 +2,34 @@
 guide-version: 1
 
 form:
-  title: "&6How To Play"
+  title: "&6How To Play On ZyberPE"
 
   content: |
     &eWelcome to the server!
+    &fHere is some useful information:
 
-    &f1. &aMine resources to earn money
-    &f2. &aUse /shop to buy items
-    &f3. &aFight players in PvP
-    &f4. &aUse /spawn if you get lost
-
+    &a• #1 Tip use tnt too break into bedrock bases make sure too duplicate plenty of it
+    &a• Use /spawn to return to spawn
+    &a• Use /rules to read server rules
+    &a• Use /report to report players
+    &a• Use /shop to buy items
+    &a• use /dupe too duplicate
+    &a• use /howtoodupe too learn how too dupe
+    &a• use /wild too teleport somewhere wild
+    &a• use /sethome A example
+    &a• use /home A too teleport too the home
+    &a• use /kit too claim a kit
+    &a• use /bounty too set bountys on players you want targeted
+    &a• use /withdrawl amount too get bank notes that you can also duplicate
+    &a• use /xpb amount too withdrawl xp levels and duplictae them also
+    &a• use /sellall while holding a item u want too sell all of in your inventory
+    &a• use /sellhand too only sell item in your hand
+    &a• use /warps too view warps
+    &a• use /warp pvp too teleport too pvp
+    &a• mine too get crate keys bank notes and more awesome rewards
+    &a• purchase a rank for access too /nightvision and /fly and /feed and /heal and /autosell and /break will break bedrock for free while looking at it
+    
+    &bHave fun and enjoy your time here! on ZyberPE
     &bMore tutorials coming soon!
 
   close-button: "&cClose"
